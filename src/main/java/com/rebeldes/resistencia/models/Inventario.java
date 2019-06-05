@@ -34,6 +34,10 @@ public class Inventario implements Serializable{
 		this.quantidade = quantidade;
 		this.itens = itens;
 	}
+	
+	public int quantidadeItens() {
+		return this.itens.size();
+	}
 
 	public void removeItem(Itens item) { // TODO verificar se a lista não esta vazia e tratar
 		this.itens.remove(item);

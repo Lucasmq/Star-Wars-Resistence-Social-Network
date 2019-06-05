@@ -59,6 +59,7 @@ public class Instantiation implements CommandLineRunner {
 			Itens item4 = new Itens(4L, "COMIDA", 1L);
 			
 			List<Itens> listItens1 = new ArrayList<Itens>();
+			List<Itens> listItens2 = new ArrayList<Itens>();
 			
 			//listItens.add((Itens) Arrays.asList(item1, item2, item3, item4));
 			
@@ -67,16 +68,21 @@ public class Instantiation implements CommandLineRunner {
 			listItens1.add(item3);
 			listItens1.add(item4);
 			
+			listItens2.add(item3);
+			listItens2.add(item4);
+			listItens2.add(item4);
+			listItens2.add(item4);
+			
 			itensRepository.saveAll(Arrays.asList(item1, item2, item3, item4));
 			
 			Inventario i1 = new Inventario(null, 3L, listItens1);
-			//Inventario i2 = new Inventario(null, 3L, listItens);
+			Inventario i2 = new Inventario(null, 3L, listItens2);
 			
-			inventarioRepository.saveAll(Arrays.asList(i1));
+			inventarioRepository.saveAll(Arrays.asList(i1,i2));
 			
 			
 			Rebelde r1 = new Rebelde(null, "Lucas Queiroz", 24, "MASCULINO", 2L, false, l1, i1);
-			Rebelde r2 = new Rebelde(null, "Ocraus", 18, "MASCULINO",(long)0, false, l2, null);
+			Rebelde r2 = new Rebelde(null, "Ocraus", 18, "MASCULINO",(long)0, false, l2, i2);
 			rebeldeRepository.save(r1);
 			rebeldeRepository.save(r2);
 		

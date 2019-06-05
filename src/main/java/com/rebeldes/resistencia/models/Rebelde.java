@@ -50,8 +50,23 @@ public class Rebelde  implements Serializable{
 		this.inventario = inventario;
 	}
 
-	public void addVotoTraidor() {
+	public void addVotoTraidor() { // adiciona voto ao rebelde sobre traição, e caso o rebelde tenha 3 votos ou mais, é classificado como traidor
 		this.votosTraidor++;
+		if(quantidadeVotos() >= 3 && !checarTraicao()) {
+			virouTraidor();
+		}
+	}
+	
+	public Long quantidadeVotos() {
+		return this.votosTraidor;
+	}
+	
+	public Boolean checarTraicao() { // checa se é traidor
+		return this.traidor;
+	}
+	
+	public void virouTraidor() {  // marca o rebelde como traidor
+		this.traidor = true;
 	}
 	
 	public Long getId() {
