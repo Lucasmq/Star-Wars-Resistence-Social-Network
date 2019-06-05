@@ -2,20 +2,14 @@ package com.rebeldes.resistencia.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-//import java.util.HashSet;
 import java.util.List;
-//import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,18 +21,23 @@ public class Inventario implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-//	private Long itemId; // id o do item na tabela ITEM 
-	
 	private Long quantidade;
 	
-	@OneToMany(mappedBy = "inventario", cascade = CascadeType.ALL)
-	//@JoinColumn(name = "fk_itens")
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Itens> itens = new ArrayList<Itens>();
 
-	//@ManyToMany
-	//private Set<Rebelde> rebeldes = new HashSet<Rebelde>(); // id referente ao rebelde a quem pertence o item
-	@OneToOne
-	private Rebelde rebelde;
+	public Inventario() {
+	}
+	
+	public Inventario(Long id, Long quantidade, List<Itens> itens) {
+		this.id = id;
+		this.quantidade = quantidade;
+		this.itens = itens;
+	}
+
+	public void removeItem(Itens item) { // TODO verificar se a lista não esta vazia e tratar
+		this.itens.remove(item);
+	}
 	
 	public Long getId() {
 		return id;
@@ -48,14 +47,6 @@ public class Inventario implements Serializable{
 		this.id = id;
 	}
 
-/*	public Long getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(long itemId) {
-		this.itemId = itemId;
-	}
-*/
 	public Long getQuantidade() {
 		return quantidade;
 	}
@@ -69,15 +60,11 @@ public class Inventario implements Serializable{
 		return itens;
 	}
 
-	public void setItens(List<Itens> itens) {
-		this.itens = itens;
+	public void setItem(Itens item) {  // adiciona 1 item na lista de itens
+		this.itens.add(item); 
 	}
 	
-	public Rebelde getRebelde() {
-		return rebelde;
-	}
-
-	public void setRebelde(Rebelde rebelde) {
-		this.rebelde = rebelde;
+	public void setItens(List<Itens> itens) {
+		this.itens = itens;
 	}
 }

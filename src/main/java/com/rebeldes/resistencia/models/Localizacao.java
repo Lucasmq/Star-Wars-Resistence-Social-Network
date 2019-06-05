@@ -3,9 +3,9 @@ package com.rebeldes.resistencia.models;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +14,7 @@ public class Localizacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id; // usar esse id compartilhado com o id de rebelde
 	
 	private Long latitude;
@@ -21,11 +22,17 @@ public class Localizacao implements Serializable {
 	private Long longitude;
 	
 	private String nomeGalaxia;
-	
-	@OneToOne
-	@MapsId
-	private Rebelde rebelde;
-	
+
+	public Localizacao() {
+		
+	}
+
+	public Localizacao(Long id, Long latitude, Long longitude, String nomeGalaxia) {
+		this.id = id;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.nomeGalaxia = nomeGalaxia;
+	}
 
 	public Long getId() {
 		return id;
@@ -59,12 +66,4 @@ public class Localizacao implements Serializable {
 		this.nomeGalaxia = nomeGalaxia;
 	}
 
-	public Rebelde getRebelde() {
-		return rebelde;
-	}
-
-	public void setRebelde(Rebelde rebelde) {
-		this.rebelde = rebelde;
-	}
-	
 }

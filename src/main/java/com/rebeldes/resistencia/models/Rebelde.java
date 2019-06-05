@@ -2,7 +2,6 @@ package com.rebeldes.resistencia.models;
 
 import java.io.Serializable;
 
-//import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,12 +28,32 @@ public class Rebelde  implements Serializable{
 	
 	private boolean traidor;
 	
-	@OneToOne (mappedBy = "rebelde")//, cascade = CascadeType.ALL)
+	@OneToOne
 	private Localizacao localizacao;
 
-	@OneToOne(mappedBy = "rebelde")
+	@OneToOne
 	private Inventario inventario;
 
+	public Rebelde() {
+		
+	}
+	
+	public Rebelde(Long id, String nome, int idade, String genero, Long votosTraidor, boolean traidor,
+			Localizacao localizacao, Inventario inventario) {
+		this.id = id;
+		this.nome = nome;
+		this.idade = idade;
+		this.genero = genero;
+		this.votosTraidor = votosTraidor;
+		this.traidor = traidor;
+		this.localizacao = localizacao;
+		this.inventario = inventario;
+	}
+
+	public void addVotoTraidor() {
+		this.votosTraidor++;
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -15,24 +15,22 @@ public class Itens implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	private String nomeItem;
 	
 	private Long pontos;
+
+	public Itens() {
+		
+	}
 	
-	@ManyToOne
-	private Inventario inventario;
-
-	public Inventario getInventario() {
-		return inventario;
+	public Itens(Long id, String nomeItem, Long pontos) {
+		this.id = id;
+		this.nomeItem = nomeItem;
+		this.pontos = pontos;
 	}
-
-	public void setInventario(Inventario inventario) {
-		this.inventario = inventario;
-	}
-
+	
 	public Long getId() {
 		return id;
 	}
