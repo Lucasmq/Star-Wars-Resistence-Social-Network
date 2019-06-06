@@ -85,4 +85,9 @@ public class InventarioService {
 			//rebeldeRepo.saveAll(Arrays.asList(rb1,rb2));		// salva os rebeldes com os novos repositorios
 			inventRepo.saveAll(Arrays.asList(rb1.getInventario(), rb2.getInventario()));
 		}
+		/*
+		public List<Itens> quantidadeDoItem(Long id){
+			return inventRepo.quatidadeDoItem(id);
+		}
+		*/
 }

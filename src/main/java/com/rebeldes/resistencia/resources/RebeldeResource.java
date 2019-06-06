@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rebeldes.resistencia.models.Inventario;
-import com.rebeldes.resistencia.models.InventarioDeTroca;
 import com.rebeldes.resistencia.models.Rebelde;
+import com.rebeldes.resistencia.models.DTO.InventarioDeTrocaDTO;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
 import com.rebeldes.resistencia.services.InventarioService;
 import com.rebeldes.resistencia.services.RebeldeService;
@@ -56,7 +56,7 @@ public class RebeldeResource {
 	}
 	
 	@PostMapping("/rebeldes/{idRebelde_1}/troca/{idRebelde_2}")
-	public ResponseEntity<String> trocaItens(@PathVariable(value = "idRebelde_1") long idRebelde_1, @PathVariable(value = "idRebelde_2") long idRebelde_2,@RequestBody InventarioDeTroca inventarioDeTroca) {
+	public ResponseEntity<String> trocaItens(@PathVariable(value = "idRebelde_1") long idRebelde_1, @PathVariable(value = "idRebelde_2") long idRebelde_2,@RequestBody InventarioDeTrocaDTO inventarioDeTroca) {
 
 		Rebelde rb1 = rebeldeService.findById(idRebelde_1);
 		Rebelde rb2 = rebeldeService.findById(idRebelde_2);

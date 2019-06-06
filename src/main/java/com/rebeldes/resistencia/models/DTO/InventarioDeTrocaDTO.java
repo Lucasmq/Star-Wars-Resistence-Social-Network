@@ -1,17 +1,19 @@
-package com.rebeldes.resistencia.models;
+package com.rebeldes.resistencia.models.DTO;
 
 import java.io.Serializable;
 
-public class InventarioDeTroca implements Serializable{
+import com.rebeldes.resistencia.models.Inventario;
+
+public class InventarioDeTrocaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Inventario inventario_1;
 	private Inventario inventario_2;
 	
-	public InventarioDeTroca() {
+	public InventarioDeTrocaDTO() {
 	}
 	
-	public InventarioDeTroca(Inventario inventario_1, Inventario inventario_2) {
+	public InventarioDeTrocaDTO(Inventario inventario_1, Inventario inventario_2) {
 		super();
 		this.inventario_1 = inventario_1;
 		this.inventario_2 = inventario_2;

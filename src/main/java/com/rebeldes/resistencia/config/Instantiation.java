@@ -18,12 +18,16 @@ import com.rebeldes.resistencia.repository.ItensRepository;
 import com.rebeldes.resistencia.repository.LocalizacaoRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
 import com.rebeldes.resistencia.services.InventarioService;
+import com.rebeldes.resistencia.services.RebeldeService;
 
 @Configuration // para o spring entender que é uma config
 public class Instantiation implements CommandLineRunner {
 
 	@Autowired
 	private RebeldeRepository rebeldeRepository;
+	
+	@Autowired
+	private RebeldeService rebeldeService;
 	
 	@Autowired
 	private LocalizacaoRepository localizacaoRepository;
@@ -113,7 +117,15 @@ public class Instantiation implements CommandLineRunner {
 			//System.out.println(its2.contains(its.get(2)));
 			//System.out.println(its.get(3).getNomeItem());
 			
-			System.out.println(invetarioService.checaItensPresentesNoInventario(rb1.get().getInventario(), rb2.get().getInventario()));
+			//System.out.println(invetarioService.checaItensPresentesNoInventario(rb1.get().getInventario(), rb2.get().getInventario()));
+			
+			//System.out.println(rebeldeRepository.quantidadeTraidores());
+			
+			//for (Rebelde rebelde : rebeldeRepository.quantidadeTraidores()) {
+			//	System.out.println(rebelde.getNome());
+			//}
+			//System.out.println(invetarioService.quantidadeDoItem(1L));
+			//System.out.println(rebeldeService.pontosPerdidosTraidores());
 			
 			//System.out.println(rb2.get().getInventario().temItemNoInventario(its.get(2)));
 			inventarioRepository.save(rb2.get().getInventario());
