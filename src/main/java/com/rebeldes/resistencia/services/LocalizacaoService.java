@@ -33,5 +33,9 @@ public class LocalizacaoService {
 		return local;
 	}
 	
+	public void saveLocalizacao(Localizacao local) {
+		localRepo.save(local);
+	}
+	
 	
 }

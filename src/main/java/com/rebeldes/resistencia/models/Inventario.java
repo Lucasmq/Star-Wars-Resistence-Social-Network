@@ -21,23 +21,43 @@ public class Inventario implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	private Long quantidade;
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Itens> itens = new ArrayList<Itens>();
 
 	public Inventario() {
 	}
 	
-	public Inventario(Long id, Long quantidade, List<Itens> itens) {
+	public Inventario(Long id, List<Itens> itens) {
 		this.id = id;
-		this.quantidade = quantidade;
 		this.itens = itens;
 	}
 	
 	public int quantidadeItens() {
 		return this.itens.size();
 	}
+	
+	public int quatidadeItemById(Long id) {
+		int quantidade = 0;
+		for (Itens itenPesquisado : itens) {
+			if(itenPesquisado.getId() == id) {
+				quantidade++;
+			}
+		}
+		return quantidade;
+	}
+	
+	public int pontuacaoTotalInventario() {
+		int pontuacaoTotal = 0;
+		for (Itens item : itens) {
+			pontuacaoTotal += item.getPontos(); 
+		}
+		return pontuacaoTotal;
+	}
+	
+	public boolean temItemNoInventario(Itens item) { // verifica se tem o item no inventario 
+		return itens.contains(item);
+	}
+	
 
 	public void removeItem(Itens item) { // TODO verificar se a lista não esta vazia e tratar
 		this.itens.remove(item);
@@ -50,15 +70,6 @@ public class Inventario implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public Long getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(long quantidade) {
-		this.quantidade = quantidade;
-	}
-
 
 	public List<Itens> getItens() {
 		return itens;

@@ -35,7 +35,8 @@ public class Rebelde  implements Serializable{
 	private Inventario inventario;
 
 	public Rebelde() {
-		
+		this.votosTraidor = 0L;
+		this.traidor = false;
 	}
 	
 	public Rebelde(Long id, String nome, int idade, String genero, Long votosTraidor, boolean traidor,
@@ -44,8 +45,8 @@ public class Rebelde  implements Serializable{
 		this.nome = nome;
 		this.idade = idade;
 		this.genero = genero;
-		this.votosTraidor = votosTraidor;
-		this.traidor = traidor;
+		this.votosTraidor = 0L;
+		this.traidor = false;
 		this.localizacao = localizacao;
 		this.inventario = inventario;
 	}
@@ -132,4 +133,31 @@ public class Rebelde  implements Serializable{
 	public void setInventario(Inventario inventario) {
 		this.inventario = inventario;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rebelde other = (Rebelde) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 }

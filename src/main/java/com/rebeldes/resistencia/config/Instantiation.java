@@ -17,6 +17,7 @@ import com.rebeldes.resistencia.repository.InventarioRepository;
 import com.rebeldes.resistencia.repository.ItensRepository;
 import com.rebeldes.resistencia.repository.LocalizacaoRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
+import com.rebeldes.resistencia.services.InventarioService;
 
 @Configuration // para o spring entender que é uma config
 public class Instantiation implements CommandLineRunner {
@@ -32,6 +33,9 @@ public class Instantiation implements CommandLineRunner {
 	
 	@Autowired
 	private InventarioRepository inventarioRepository;
+	
+	@Autowired
+	private InventarioService invetarioService;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -63,20 +67,21 @@ public class Instantiation implements CommandLineRunner {
 			
 			//listItens.add((Itens) Arrays.asList(item1, item2, item3, item4));
 			
-			listItens1.add(item1);
-			listItens1.add(item1);
-			listItens1.add(item3);
-			listItens1.add(item4);
+			//listItens1.add(item1);
+			listItens1.add(item1); // ARMA
+			listItens1.add(item3); // AGUA
+			listItens1.add(item4); // COMIDA
 			
-			listItens2.add(item3);
-			listItens2.add(item4);
-			listItens2.add(item4);
-			listItens2.add(item4);
+			listItens2.add(item1); // ARMA
+			listItens2.add(item2); // MUNICAO
+			listItens2.add(item2); // MUNICAO
+			listItens2.add(item3); // AGUA
+			listItens2.add(item4); // COMIDA
 			
 			itensRepository.saveAll(Arrays.asList(item1, item2, item3, item4));
 			
-			Inventario i1 = new Inventario(null, 3L, listItens1);
-			Inventario i2 = new Inventario(null, 3L, listItens2);
+			Inventario i1 = new Inventario(null, listItens1);
+			Inventario i2 = new Inventario(null, listItens2);
 			
 			inventarioRepository.saveAll(Arrays.asList(i1,i2));
 			
@@ -86,6 +91,34 @@ public class Instantiation implements CommandLineRunner {
 			rebeldeRepository.save(r1);
 			rebeldeRepository.save(r2);
 		
+		}else {
+			
+			Optional<Rebelde> rb1 = rebeldeRepository.findById(5L);
+			Optional<Rebelde> rb2 = rebeldeRepository.findById(6L);
+			
+			List<Itens> its = rb1.get().getInventario().getItens();
+			List<Itens> its2 = rb2.get().getInventario().getItens();
+			
+			//rb2.get().getInventario().removeItem(its.get(2));
+			
+			for (Itens item : its) {
+				System.out.println(item.getNomeItem());
+			}
+			System.out.println("--------");
+			for (Itens item : its2) {
+				System.out.println(item.getNomeItem());
+			}
+			System.out.println("--------");
+			
+			//System.out.println(its2.contains(its.get(2)));
+			//System.out.println(its.get(3).getNomeItem());
+			
+			System.out.println(invetarioService.checaItensPresentesNoInventario(rb1.get().getInventario(), rb2.get().getInventario()));
+			
+			//System.out.println(rb2.get().getInventario().temItemNoInventario(its.get(2)));
+			inventarioRepository.save(rb2.get().getInventario());
+			rebeldeRepository.save(rb2.get());
+			
 		}
 	}
 
