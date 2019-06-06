@@ -18,7 +18,7 @@ import com.rebeldes.resistencia.repository.RebeldeRepository;
 import com.rebeldes.resistencia.services.exception.ObjectNotFoundException;
 
 @Service
-public class RebeldeService {
+public class TraidoresService {
 	
 	@Autowired
 	private RebeldeRepository rebeldeRepo;
@@ -33,25 +33,36 @@ public class RebeldeService {
 	private ItensService itensService;
 	
 	@Autowired 
-	private TraidoresService traidoresService;
+	private RebeldeService rebelService;
 	
 	public List<Rebelde> findAll(){
 		return rebeldeRepo.findAll();
 	}
 	
-	public Rebelde findById(Long id) {
-		Optional<Rebelde> objRb = rebeldeRepo.findById(id);
-		return objRb.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+	public Rebelde votarTraidor(Long id) {
+		Rebelde rebelde = rebelService.findById(id); // caso não encontre, já manda a excepion do findbyid
+		rebelde.addVotoTraidor();
+		return rebeldeRepo.save(rebelde);
 	}
 	
-	public Rebelde salvarRebelde(Rebelde rb) {
-		localService.saveLocalizacao(rb.getLocalizacao()); // TODO validar os dados de localizacao
-		inventService.saveInventario(rb.getInventario());
-		return rebeldeRepo.save(rb);
+	public double porcentagemTraidores() {
+		double traidores = rebeldeRepo.traidores().size();
+		double rebeldes  = rebeldeRepo.findAll().size();
+		
+		return (traidores/rebeldes)*100;
 	}
 	
-	public double porcentagemRebeldes() {
-		return (100-traidoresService.porcentagemTraidores());
+	public List<Rebelde> listaTraidores(){
+		return rebeldeRepo.traidores();
+	}
+	
+	public int pontosPerdidosTraidores() {
+		int pontosPerdidos = 0;
+		List<Rebelde> traidores = listaTraidores();
+		for (Rebelde traidor : traidores) {
+			pontosPerdidos += traidor.getInventario().pontuacaoTotalInventario();
+		}
+		return pontosPerdidos;
 	}
 
 }

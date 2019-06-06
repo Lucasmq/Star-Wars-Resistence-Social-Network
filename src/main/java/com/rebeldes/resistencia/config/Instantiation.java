@@ -18,6 +18,7 @@ import com.rebeldes.resistencia.repository.ItensRepository;
 import com.rebeldes.resistencia.repository.LocalizacaoRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
 import com.rebeldes.resistencia.services.InventarioService;
+import com.rebeldes.resistencia.services.ItensService;
 import com.rebeldes.resistencia.services.RebeldeService;
 
 @Configuration // para o spring entender que é uma config
@@ -79,6 +80,11 @@ public class Instantiation implements CommandLineRunner {
 			listItens2.add(item1); // ARMA
 			listItens2.add(item2); // MUNICAO
 			listItens2.add(item2); // MUNICAO
+			listItens2.add(item2); // MUNICAO
+			listItens2.add(item2); // MUNICAO
+			listItens2.add(item2); // MUNICAO
+			listItens2.add(item2); // MUNICAO
+			listItens2.add(item2); // MUNICAO
 			listItens2.add(item3); // AGUA
 			listItens2.add(item4); // COMIDA
 			
@@ -90,8 +96,8 @@ public class Instantiation implements CommandLineRunner {
 			inventarioRepository.saveAll(Arrays.asList(i1,i2));
 			
 			
-			Rebelde r1 = new Rebelde(null, "Lucas Queiroz", 24, "MASCULINO", 2L, false, l1, i1);
-			Rebelde r2 = new Rebelde(null, "Ocraus", 18, "MASCULINO",(long)0, false, l2, i2);
+			Rebelde r1 = new Rebelde(null, "Lucas Queiroz", 24, "MASCULINO", false, l1, i1);
+			Rebelde r2 = new Rebelde(null, "Ocraus", 18, "MASCULINO", false, l2, i2);
 			rebeldeRepository.save(r1);
 			rebeldeRepository.save(r2);
 		
@@ -126,6 +132,10 @@ public class Instantiation implements CommandLineRunner {
 			//}
 			//System.out.println(invetarioService.quantidadeDoItem(1L));
 			//System.out.println(rebeldeService.pontosPerdidosTraidores());
+			
+			invetarioService.mediaRecurso();
+			
+			System.out.println(inventarioRepository.quatidadeDoItem(4L));
 			
 			//System.out.println(rb2.get().getInventario().temItemNoInventario(its.get(2)));
 			inventarioRepository.save(rb2.get().getInventario());

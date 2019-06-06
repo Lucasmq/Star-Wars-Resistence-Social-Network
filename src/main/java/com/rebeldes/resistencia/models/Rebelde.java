@@ -24,7 +24,7 @@ public class Rebelde  implements Serializable{
 	
 	private String genero;
 	
-	private Long votosTraidor;
+	private Integer votosTraidor;
 	
 	private boolean traidor;
 	
@@ -35,18 +35,27 @@ public class Rebelde  implements Serializable{
 	private Inventario inventario;
 
 	public Rebelde() {
-		this.votosTraidor = 0L;
+		this.votosTraidor = 0;
 		this.traidor = false;
 	}
 	
-	public Rebelde(Long id, String nome, int idade, String genero, Long votosTraidor, boolean traidor,
+	public Rebelde(String nome, int idade, String genero, Localizacao localizacao, Inventario inventario) {
+		this.nome = nome;
+		this.idade = idade;
+		this.genero = genero;
+		this.votosTraidor = 0;
+		this.localizacao = localizacao;
+		this.inventario = inventario;
+	}
+	
+	public Rebelde(Long id, String nome, int idade, String genero, boolean traidor,
 			Localizacao localizacao, Inventario inventario) {
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.genero = genero;
-		this.votosTraidor = 0L;
-		this.traidor = false;
+		this.votosTraidor = 0;
+		this.traidor = traidor;
 		this.localizacao = localizacao;
 		this.inventario = inventario;
 	}
@@ -58,7 +67,7 @@ public class Rebelde  implements Serializable{
 		}
 	}
 	
-	public Long quantidadeVotos() {
+	public Integer quantidadeVotos() {
 		return this.votosTraidor;
 	}
 	
@@ -102,11 +111,11 @@ public class Rebelde  implements Serializable{
 		this.genero = genero;
 	}
 
-	public Long getVotosTraidor() {
+	public Integer getVotosTraidor() {
 		return votosTraidor;
 	}
 
-	public void setVotosTraidor(long votosTraidor) {
+	public void setVotosTraidor(Integer votosTraidor) {
 		this.votosTraidor = votosTraidor;
 	}
 

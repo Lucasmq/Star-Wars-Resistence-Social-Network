@@ -1,5 +1,6 @@
 package com.rebeldes.resistencia.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,13 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.rebeldes.resistencia.models.Inventario;
 import com.rebeldes.resistencia.models.Rebelde;
 import com.rebeldes.resistencia.models.DTO.InventarioDeTrocaDTO;
+import com.rebeldes.resistencia.models.DTO.RebeldeDTO;
+import com.rebeldes.resistencia.models.DTO.RelatorioMediaItensDTO;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
 import com.rebeldes.resistencia.services.InventarioService;
 import com.rebeldes.resistencia.services.RebeldeService;
+import com.rebeldes.resistencia.services.TraidoresService;
 
 @RestController
 @RequestMapping(value="/api")
@@ -26,6 +31,9 @@ public class RebeldeResource {
 	
 	@Autowired
 	RebeldeService rebeldeService;
+	
+	@Autowired
+	TraidoresService traidorService;
 	
 	@Autowired
 	InventarioService inventarioService;
@@ -44,14 +52,16 @@ public class RebeldeResource {
 	
 	
 	@PostMapping("/rebelde")
-	public ResponseEntity<Rebelde> salvaRebelde(@RequestBody Rebelde rebelde) {  // TODO arrumar o modo como salva os itens e localização
-		Rebelde reb = rebeldeService.salvarRebelde(rebelde);
-		return ResponseEntity.ok().body(reb);
+	public ResponseEntity<Rebelde> salvaRebelde(@RequestBody RebeldeDTO rebeldeDTO) {  // TODO arrumar o modo como salva os itens e localização
+		Rebelde reb = rebeldeService.salvarRebelde(rebeldeDTO.tranformaParaRebelde());
+		//return ResponseEntity.ok().body(reb);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(reb.getId()).toUri();
+		return ResponseEntity.created(uri).body(reb); //<>(reb, HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/rebelde/votartraidor/{id}")
 	public ResponseEntity<Rebelde> votaTraidor(@PathVariable(value = "id") long id) {
-		Rebelde reb = rebeldeService.votarTraidor(id);
+		Rebelde reb = traidorService.votarTraidor(id);
 		return ResponseEntity.ok().body(reb);
 	}
 	
@@ -63,6 +73,8 @@ public class RebeldeResource {
 		
 		Inventario inventario_1 = inventarioDeTroca.getInventario_1();
 		Inventario inventario_2 = inventarioDeTroca.getInventario_2();
+		
+		System.out.println(inventarioService.pontuacaoEquivalenteEntreInventarios(inventario_1, inventario_2));
 
 		if(inventarioService.aptoParaTrocar(rb1, rb2, inventario_1, inventario_2)) {
 			System.out.println(inventario_1.pontuacaoTotalInventario());
@@ -73,6 +85,12 @@ public class RebeldeResource {
 		}
 		//return ResponseEntity.ok().body(rb1);
 		return new ResponseEntity<>("", HttpStatus.OK);
+	}
+	
+	@GetMapping("/relatorio/rebeldes/media/itens")
+	public ResponseEntity<List<RelatorioMediaItensDTO>> mediaItens(){ // responseEntity para repostas HTTP
+		List<RelatorioMediaItensDTO> mediaItens = inventarioService.mediaRecurso();
+		return ResponseEntity.ok().body(mediaItens);
 	}
 	
 }

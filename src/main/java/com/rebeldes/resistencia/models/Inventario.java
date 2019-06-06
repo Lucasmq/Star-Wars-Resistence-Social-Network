@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +24,8 @@ public class Inventario implements Serializable{
 	private Long id;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Itens> itens = new ArrayList<Itens>();
+	@JoinColumn(name="ID_ITEM")
+	private List<Itens> itens;// = new ArrayList<Itens>();
 
 	public Inventario() {
 	}

@@ -25,6 +25,10 @@ public class RelatorioMediaItensDTO {
 		this.id = id;
 	}
 	
+    public void addQuantidadeItem(int add) {
+    	this.quantidadeItem += add;
+    }
+    
 
 	public int getQuantidadeItem() {
 		return quantidadeItem;

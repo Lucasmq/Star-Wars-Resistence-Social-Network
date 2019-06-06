@@ -9,8 +9,8 @@ import com.rebeldes.resistencia.models.Inventario;
 import com.rebeldes.resistencia.models.Itens;
 
 public interface InventarioRepository extends JpaRepository<Inventario, Long>{
-	/*
-	@Query("SELECT id FROM Inventario WHERE id = ?1")
-	List<Itens> quatidadeDoItem(long id);
-	*/
+	
+	@Query("SELECT count(id) FROM Inventario WHERE id = ?1")
+	Long quatidadeDoItem(long id);
+	
 }
