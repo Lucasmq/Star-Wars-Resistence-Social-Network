@@ -1,7 +1,5 @@
 package com.rebeldes.resistencia.models.DTO;
 
-import com.rebeldes.resistencia.models.Inventario;
-
 public class TraidoresPorcentagemDTO {
 
 		private Double PorcentagemDeTraidores;

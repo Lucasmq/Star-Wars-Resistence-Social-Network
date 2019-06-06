@@ -3,7 +3,6 @@ package com.rebeldes.resistencia.config;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,18 +16,12 @@ import com.rebeldes.resistencia.repository.InventarioRepository;
 import com.rebeldes.resistencia.repository.ItensRepository;
 import com.rebeldes.resistencia.repository.LocalizacaoRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
-import com.rebeldes.resistencia.services.InventarioService;
-import com.rebeldes.resistencia.services.ItensService;
-import com.rebeldes.resistencia.services.RebeldeService;
 
 @Configuration // para o spring entender que é uma config
 public class Instantiation implements CommandLineRunner {
 
 	@Autowired
 	private RebeldeRepository rebeldeRepository;
-	
-	@Autowired
-	private RebeldeService rebeldeService;
 	
 	@Autowired
 	private LocalizacaoRepository localizacaoRepository;
@@ -39,28 +32,16 @@ public class Instantiation implements CommandLineRunner {
 	@Autowired
 	private InventarioRepository inventarioRepository;
 	
-	@Autowired
-	private InventarioService invetarioService;
-	
 	@Override
 	public void run(String... args) throws Exception {
 		List<Rebelde> rebeldes = new ArrayList<Rebelde>(rebeldeRepository.findAll());
-		
-		System.out.println(rebeldes.isEmpty());
-		
+
 		if(rebeldes.isEmpty()) {
-			
-			/*
-			rebeldeRepository.deleteAll();
-			localizacaoRepository.deleteAll();
-			itensRepository.deleteAll();
-			inventarioRepository.deleteAll();
-			*/
-			
+		
 			Localizacao l1 = new Localizacao(null, 123L, 321L, "Solar");
 			Localizacao l2 = new Localizacao(null, 13L, 21L, "Patos");
 			
-			localizacaoRepository.saveAll(Arrays.asList(l1,l2)); // TODO verificar
+			localizacaoRepository.saveAll(Arrays.asList(l1,l2));
 	
 			Itens item1 = new Itens(1L, "ARMA", 4L);
 			Itens item2 = new Itens(2L, "MUNICAO", 3L);
@@ -70,9 +51,6 @@ public class Instantiation implements CommandLineRunner {
 			List<Itens> listItens1 = new ArrayList<Itens>();
 			List<Itens> listItens2 = new ArrayList<Itens>();
 			
-			//listItens.add((Itens) Arrays.asList(item1, item2, item3, item4));
-			
-			//listItens1.add(item1);
 			listItens1.add(item1); // ARMA
 			listItens1.add(item3); // AGUA
 			listItens1.add(item4); // COMIDA
@@ -101,33 +79,6 @@ public class Instantiation implements CommandLineRunner {
 			rebeldeRepository.save(r1);
 			rebeldeRepository.save(r2);
 		
-		}else {
-			
-			Optional<Rebelde> rb1 = rebeldeRepository.findById(5L);
-			Optional<Rebelde> rb2 = rebeldeRepository.findById(6L);
-			
-			List<Itens> its = rb1.get().getInventario().getItens();
-			List<Itens> its2 = rb2.get().getInventario().getItens();
-			
-			//rb2.get().getInventario().removeItem(its.get(2));
-			
-			for (Itens item : its) {
-				System.out.println(item.getNomeItem());
-			}
-			System.out.println("--------");
-			for (Itens item : its2) {
-				System.out.println(item.getNomeItem());
-			}
-			System.out.println("--------");
-			
-			invetarioService.mediaRecurso();
-			
-			System.out.println(inventarioRepository.quatidadeDoItem(4L));
-			
-			//System.out.println(rb2.get().getInventario().temItemNoInventario(its.get(2)));
-			inventarioRepository.save(rb2.get().getInventario());
-			rebeldeRepository.save(rb2.get());
-			
 		}
 	}
 

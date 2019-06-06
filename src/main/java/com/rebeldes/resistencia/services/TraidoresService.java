@@ -1,36 +1,15 @@
 package com.rebeldes.resistencia.services;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.rebeldes.resistencia.models.Inventario;
-import com.rebeldes.resistencia.models.Itens;
 import com.rebeldes.resistencia.models.Rebelde;
-import com.rebeldes.resistencia.models.DTO.RelatorioMediaItensDTO;
-import com.rebeldes.resistencia.repository.InventarioRepository;
-import com.rebeldes.resistencia.repository.ItensRepository;
-import com.rebeldes.resistencia.repository.LocalizacaoRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
-import com.rebeldes.resistencia.services.exception.ObjectNotFoundException;
 
 @Service
 public class TraidoresService {
 	
 	@Autowired
 	private RebeldeRepository rebeldeRepo;
-	
-	@Autowired
-	private LocalizacaoService localService;
-	
-	@Autowired 
-	private InventarioService inventService;
-	
-	@Autowired 
-	private ItensService itensService;
 	
 	@Autowired 
 	private RebeldeService rebelService;

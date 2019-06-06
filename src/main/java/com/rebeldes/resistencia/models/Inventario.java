@@ -1,7 +1,6 @@
 package com.rebeldes.resistencia.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -61,7 +59,6 @@ public class Inventario implements Serializable{
 		return itens.contains(item);
 	}
 	
-
 	public void removeItem(Itens item) { // TODO verificar se a lista não esta vazia e tratar
 		this.itens.remove(item);
 	}

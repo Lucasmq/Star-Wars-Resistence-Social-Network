@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.rebeldes.resistencia.models.Localizacao;
 import com.rebeldes.resistencia.models.Rebelde;
 import com.rebeldes.resistencia.repository.LocalizacaoRepository;
-import com.rebeldes.resistencia.repository.RebeldeRepository;
 
 @Service
 public class LocalizacaoService {

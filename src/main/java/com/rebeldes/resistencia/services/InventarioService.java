@@ -12,7 +12,6 @@ import com.rebeldes.resistencia.models.Itens;
 import com.rebeldes.resistencia.models.Rebelde;
 import com.rebeldes.resistencia.models.DTO.RelatorioMediaItensDTO;
 import com.rebeldes.resistencia.repository.InventarioRepository;
-import com.rebeldes.resistencia.repository.ItensRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
 
 @Service
@@ -20,9 +19,6 @@ public class InventarioService {
 
 		@Autowired
 		private InventarioRepository inventRepo;
-		
-		@Autowired
-		private ItensRepository itensRepo;
 		
 		@Autowired 
 		private ItensService itensService;

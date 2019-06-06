@@ -2,7 +2,6 @@ package com.rebeldes.resistencia.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ import com.rebeldes.resistencia.models.Rebelde;
 import com.rebeldes.resistencia.models.DTO.InventarioDeTrocaDTO;
 import com.rebeldes.resistencia.models.DTO.RebeldeDTO;
 import com.rebeldes.resistencia.models.DTO.RelatorioMediaItensDTO;
-import com.rebeldes.resistencia.repository.RebeldeRepository;
 import com.rebeldes.resistencia.services.InventarioService;
 import com.rebeldes.resistencia.services.RebeldeService;
 import com.rebeldes.resistencia.services.TraidoresService;
