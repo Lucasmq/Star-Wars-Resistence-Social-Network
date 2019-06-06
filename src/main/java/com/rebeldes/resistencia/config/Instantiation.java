@@ -38,8 +38,8 @@ public class Instantiation implements CommandLineRunner {
 
 		if(rebeldes.isEmpty()) {
 		
-			Localizacao l1 = new Localizacao(null, 123L, 321L, "Solar");
-			Localizacao l2 = new Localizacao(null, 13L, 21L, "Patos");
+			Localizacao l1 = new Localizacao(null, 123, 321, "Solar");
+			Localizacao l2 = new Localizacao(null, 13, 21, "Patos");
 			
 			localizacaoRepository.saveAll(Arrays.asList(l1,l2));
 	

@@ -20,7 +20,7 @@ public class Rebelde  implements Serializable{
 	
 	private String nome;
 	
-	private int idade;
+	private Integer idade;
 	
 	private String genero;
 	
@@ -39,7 +39,7 @@ public class Rebelde  implements Serializable{
 		this.traidor = false;
 	}
 	
-	public Rebelde(String nome, int idade, String genero, Localizacao localizacao, Inventario inventario) {
+	public Rebelde(String nome, Integer idade, String genero, Localizacao localizacao, Inventario inventario) {
 		this.nome = nome;
 		this.idade = idade;
 		this.genero = genero;
@@ -48,7 +48,7 @@ public class Rebelde  implements Serializable{
 		this.inventario = inventario;
 	}
 	
-	public Rebelde(Long id, String nome, int idade, String genero, boolean traidor,
+	public Rebelde(Long id, String nome, Integer idade, String genero, boolean traidor,
 			Localizacao localizacao, Inventario inventario) {
 		this.id = id;
 		this.nome = nome;
@@ -95,11 +95,11 @@ public class Rebelde  implements Serializable{
 		this.nome = nome;
 	}
 
-	public int getIdade() {
+	public Integer getIdade() {
 		return idade;
 	}
 
-	public void setIdade(int idade) {
+	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
 

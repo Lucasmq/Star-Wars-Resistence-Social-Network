@@ -1,5 +1,7 @@
 package com.rebeldes.resistencia.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,7 @@ public class LocalizacaoResource {
 	}
 	
 	@PutMapping("/rebelde/{id}")
-	public ResponseEntity<Localizacao> atualizaLocalizacaoRebelde(@PathVariable(value = "id") Long id, @RequestBody Localizacao local){
+	public ResponseEntity<Localizacao> atualizaLocalizacaoRebelde(@PathVariable(value = "id") Long id, @RequestBody @Valid Localizacao local){
 		service.updateLocalizacaoByRebeldeId(id, local);
 		return ResponseEntity.noContent().build();
 	}

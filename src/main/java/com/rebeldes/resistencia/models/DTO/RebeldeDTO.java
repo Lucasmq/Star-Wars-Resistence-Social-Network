@@ -1,15 +1,23 @@
 package com.rebeldes.resistencia.models.DTO;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.rebeldes.resistencia.models.Inventario;
 import com.rebeldes.resistencia.models.Localizacao;
 import com.rebeldes.resistencia.models.Rebelde;
 
 public class RebeldeDTO {
 	
+	@NotBlank(message = "Nome não pode ser vazio!") // falta tratar a exibição das exceções
+	@Size(min = 2, max = 50, message = "O nome deve ter entre 2 e 50 caracteres")
 	private String nome;
 	
-	private int idade;
+	@NotNull(message= "Idade não pode ser vazia!")
+	private Integer  idade;
 	
+	@NotBlank(message = "Nome não pode ser vazio!")
 	private String genero;
 
 	private Localizacao localizacao;
@@ -19,7 +27,7 @@ public class RebeldeDTO {
 	public RebeldeDTO() {
 	}
 
-	public RebeldeDTO(String nome, int idade, String genero, Localizacao localizacao, Inventario inventario) {
+	public RebeldeDTO(String nome, Integer idade, String genero, Localizacao localizacao, Inventario inventario) {
 		this.nome = nome;
 		this.idade = idade;
 		this.genero = genero;
@@ -39,11 +47,11 @@ public class RebeldeDTO {
 		this.nome = nome;
 	}
 
-	public int getIdade() {
+	public Integer getIdade() {
 		return idade;
 	}
 
-	public void setIdade(int idade) {
+	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
 

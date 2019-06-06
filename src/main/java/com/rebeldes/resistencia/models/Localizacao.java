@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="LOCALIZACAO")
@@ -17,19 +19,20 @@ public class Localizacao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id; // usar esse id compartilhado com o id de rebelde
 	
-	private Long latitude;
+	@NotNull(message= "Latitude tem que ser informada!")
+	private Integer latitude;
 	
-	private Long longitude;
+	@NotNull(message= "Longitude tem que ser informada!")
+	private Integer longitude;
 	
+	@NotBlank (message= "Informe a galaxia da qual a base faz parte")
 	private String nomeGalaxia;
 
 	public Localizacao() {
-		this.latitude = 0L;
-		this.longitude = 0L;
-		this.nomeGalaxia = "Não informado";
+		
 	}
 
-	public Localizacao(Long id, Long latitude, Long longitude, String nomeGalaxia) {
+	public Localizacao(Long id, Integer latitude, Integer longitude, String nomeGalaxia) {
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
@@ -44,19 +47,19 @@ public class Localizacao implements Serializable {
 		this.id = id;
 	}
 
-	public Long getLatitude() {
+	public Integer getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(long latitude) {
+	public void setLatitude(Integer latitude) {
 		this.latitude = latitude;
 	}
 
-	public Long getLongitude() {
+	public Integer getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(long longitude) {
+	public void setLongitude(Integer longitude) {
 		this.longitude = longitude;
 	}
 

@@ -3,6 +3,8 @@ package com.rebeldes.resistencia.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +52,7 @@ public class RebeldeResource {
 	
 	
 	@PostMapping("/rebelde")
-	public ResponseEntity<Rebelde> salvaRebelde(@RequestBody RebeldeDTO rebeldeDTO) {  // TODO arrumar o modo como salva os itens e localização
+	public ResponseEntity<Rebelde> salvaRebelde(@RequestBody @Valid RebeldeDTO rebeldeDTO) {  // TODO arrumar o modo como salva os itens e localização
 		Rebelde reb = rebeldeService.salvarRebelde(rebeldeDTO.tranformaParaRebelde());
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(reb.getId()).toUri(); // retorna o caminho do novo rebelde
 		return ResponseEntity.created(uri).body(reb); 

@@ -31,7 +31,7 @@ public class RebeldeService {
 	
 	public Rebelde findById(Long id) {
 		Optional<Rebelde> objRb = rebeldeRepo.findById(id);
-		return objRb.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+		return objRb.orElseThrow(() -> new ObjectNotFoundException("Rebelde não encontrado"));
 	}
 	
 	public Rebelde salvarRebelde(Rebelde rb) {

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Inventario")
@@ -23,7 +24,8 @@ public class Inventario implements Serializable{
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="ID_ITEM")
-	private List<Itens> itens;// = new ArrayList<Itens>();
+	@NotEmpty(message= "O rebelde não pode iniciar sem itens!")
+	private List<Itens> itens;
 
 	public Inventario() {
 	}
