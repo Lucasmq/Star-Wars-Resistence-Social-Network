@@ -54,9 +54,8 @@ public class RebeldeResource {
 	@PostMapping("/rebelde")
 	public ResponseEntity<Rebelde> salvaRebelde(@RequestBody RebeldeDTO rebeldeDTO) {  // TODO arrumar o modo como salva os itens e localização
 		Rebelde reb = rebeldeService.salvarRebelde(rebeldeDTO.tranformaParaRebelde());
-		//return ResponseEntity.ok().body(reb);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(reb.getId()).toUri();
-		return ResponseEntity.created(uri).body(reb); //<>(reb, HttpStatus.CREATED);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(reb.getId()).toUri(); // retorna o caminho do novo rebelde
+		return ResponseEntity.created(uri).body(reb); 
 	}
 	
 	@PostMapping("/rebelde/votartraidor/{id}")
@@ -81,10 +80,10 @@ public class RebeldeResource {
 			System.out.println(inventario_2.pontuacaoTotalInventario());
 			inventarioService.trocarItensDoInventario(rb1, rb2, inventario_1, inventario_2);
 		}else {
-			return new ResponseEntity<>("", HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>("Troca não efetuada", HttpStatus.NOT_ACCEPTABLE);
 		}
 		//return ResponseEntity.ok().body(rb1);
-		return new ResponseEntity<>("", HttpStatus.OK);
+		return new ResponseEntity<>("Troca efetudada com sucesso", HttpStatus.OK);
 	}
 	
 	@GetMapping("/relatorio/rebeldes/media/itens")

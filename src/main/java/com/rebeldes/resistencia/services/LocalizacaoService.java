@@ -27,10 +27,14 @@ public class LocalizacaoService {
 	
 	public Localizacao updateLocalizacaoByRebeldeId(Long id,Localizacao local) {
 		Rebelde rb = rebelService.findById(id);
-		localRepo.save(local);
-		rb.setLocalizacao(local);
-		rebelService.salvarRebelde(rb);
-		return local;
+		Optional<Localizacao> lc = localRepo.findById(rb.getLocalizacao().getId());
+		
+		lc.get().setLatitude(local.getLatitude());
+		lc.get().setLongitude(local.getLongitude());
+		lc.get().setNomeGalaxia(local.getNomeGalaxia());
+		
+		localRepo.save(lc.get());
+		return lc.get();
 	}
 	
 	public void saveLocalizacao(Localizacao local) {
