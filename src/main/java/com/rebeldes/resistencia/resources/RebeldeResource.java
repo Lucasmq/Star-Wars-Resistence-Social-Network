@@ -67,7 +67,7 @@ public class RebeldeResource {
 	@PostMapping("/rebeldes/{idRebelde_1}/troca/{idRebelde_2}")
 	public ResponseEntity<String> trocaItens(@PathVariable(value = "idRebelde_1") long idRebelde_1, @PathVariable(value = "idRebelde_2") long idRebelde_2,@RequestBody InventarioDeTrocaDTO inventarioDeTroca) {
 
-		Rebelde rb1 = rebeldeService.findById(idRebelde_1);
+		Rebelde rb1 = rebeldeService.findById(idRebelde_1);																	// a criação inventarioDeTrocaDTO foi para que possa ser possivel pegar 2 objetos do @RequestBody
 		Rebelde rb2 = rebeldeService.findById(idRebelde_2);
 		
 		Inventario inventario_1 = inventarioDeTroca.getInventario_1();
