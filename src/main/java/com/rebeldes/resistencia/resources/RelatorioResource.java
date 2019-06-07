@@ -18,7 +18,7 @@ import com.rebeldes.resistencia.services.TraidoresService;
 
 @RestController
 @RequestMapping(value="/api/relatorios")
-public class RelatorioResource {
+public class RelatorioResource {   // destinado para resoulver os pedidos de relatorios
 	
 	@Autowired
 	InventarioService inventarioService;
@@ -38,13 +38,13 @@ public class RelatorioResource {
 	
 	@GetMapping(value = "/traidores/porcentagem")
 	public ResponseEntity<TraidoresPorcentagemDTO> porcentagemTraidores() {
-		TraidoresPorcentagemDTO traidoresPorcentagem = new TraidoresPorcentagemDTO(traidoresService.porcentagemTraidores());  // devo retornar inteiro ou string?
+		TraidoresPorcentagemDTO traidoresPorcentagem = new TraidoresPorcentagemDTO(traidoresService.porcentagemTraidores());  
 		return ResponseEntity.ok().body(traidoresPorcentagem);
 	}
 	
 	@GetMapping(value = "/rebeldes/porcentagem")
 	public ResponseEntity<RebeldesPorcentagemDTO> porcentagemRebeldes() {
-		RebeldesPorcentagemDTO rebeldesPorcentagem = new RebeldesPorcentagemDTO(rebeldeService.porcentagemRebeldes());  // devo retornar inteiro ou string?
+		RebeldesPorcentagemDTO rebeldesPorcentagem = new RebeldesPorcentagemDTO(rebeldeService.porcentagemRebeldes()); 
 		return ResponseEntity.ok().body(rebeldesPorcentagem);
 	}
 

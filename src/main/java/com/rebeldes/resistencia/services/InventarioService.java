@@ -70,10 +70,11 @@ public class InventarioService {
 			inventRepo.saveAll(Arrays.asList(rb1.getInventario(), rb2.getInventario()));								    // atualiza os inventarios dos rebeldes com os itens trocados
 		}
 		
-		public List<RelatorioMediaItensDTO> mediaRecurso() {
+		public List<RelatorioMediaItensDTO> mediaRecurso() {																// seria mais simples utilizar uma query no repository para voltar a quantidade de itens nos iventarios
 			List<RelatorioMediaItensDTO> mediasItens = new ArrayList<RelatorioMediaItensDTO>();
 			List<Itens> todosItensCadastrados = itensService.todosItens();
-			List<Rebelde> rebeldes = rebeldeRepo.rebeldesNaoTraidores();			
+			List<Rebelde> rebeldes = rebeldeRepo.rebeldesNaoTraidores();	
+			double mediaDosItens = 0;
 			int qtdRebeldes = rebeldes.size();
 
 			for (Itens item : todosItensCadastrados) {
@@ -86,7 +87,8 @@ public class InventarioService {
 					for (Itens item : itens) {
 						int index = (int) (long) item.getId() -1;
 						mediasItens.get(index).addQuantidadeItem(1);
-						mediasItens.get(index).setMediaItem((double) mediasItens.get(index).getQuantidadeItem()/(double) qtdRebeldes);
+						mediaDosItens = (double) mediasItens.get(index).getQuantidadeItem()/(double) qtdRebeldes;
+						mediasItens.get(index).setMediaItem(mediaDosItens);
 					}
 				}
 			}

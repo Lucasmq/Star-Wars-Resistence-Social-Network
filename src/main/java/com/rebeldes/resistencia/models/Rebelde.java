@@ -22,7 +22,7 @@ public class Rebelde  implements Serializable{
 	
 	private Integer idade;
 	
-	private String genero;
+	private String genero;			// aqui seria melhor utilizar ENUM
 	
 	private Integer votosTraidor;
 	

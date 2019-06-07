@@ -53,7 +53,9 @@ public class Itens implements Serializable{
 	public void setPontos(long pontos) {
 		this.pontos = pontos;
 	}
-
+	
+	// foi gerado o hashCode e equals somente no itens para que se possa compara-los
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -43,17 +43,17 @@ public class Inventario implements Serializable{
 		return this.itens.size();
 	}
 	
-	public int quatidadeItemById(Long id) {
+	public int quatidadeItemById(Long id) {    // retorna quantos itens tem no iventario com o id informado
 		int quantidade = 0;
 		for (Itens itenPesquisado : itens) {
-			if(itenPesquisado.getId() == id) {
-				quantidade++;
+			if(itenPesquisado.getId() == id) {			// é verificado se o id do item no invetario é o igual ao id pesquisado, se sim
+				quantidade++;							// é somado 1 na quantidade
 			}
 		}
 		return quantidade;
 	}
 	
-	public int pontuacaoTotalInventario() {
+	public int pontuacaoTotalInventario() { // retorna quantos pontos tem no total no inventario a partir dos itens
 		int pontuacaoTotal = 0;
 		for (Itens item : itens) {
 			pontuacaoTotal += item.getPontos(); 
@@ -65,7 +65,7 @@ public class Inventario implements Serializable{
 		return itens.contains(item);
 	}
 	
-	public void removeItem(Itens item) { // TODO verificar se a lista não esta vazia e tratar
+	public void removeItem(Itens item) { 
 		this.itens.remove(item);
 	}
 	
