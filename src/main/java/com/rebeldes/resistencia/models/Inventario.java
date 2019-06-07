@@ -30,6 +30,10 @@ public class Inventario implements Serializable{
 	public Inventario() {
 	}
 	
+	public Inventario(List<Itens> itens) {
+		this.itens = itens;
+	}
+	
 	public Inventario(Long id, List<Itens> itens) {
 		this.id = id;
 		this.itens = itens;

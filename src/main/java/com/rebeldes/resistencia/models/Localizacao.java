@@ -31,7 +31,11 @@ public class Localizacao implements Serializable {
 	public Localizacao() {
 		
 	}
-
+	public Localizacao(Integer latitude, Integer longitude, String nomeGalaxia) {
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.nomeGalaxia = nomeGalaxia;
+	}
 	public Localizacao(Long id, Integer latitude, Integer longitude, String nomeGalaxia) {
 		this.id = id;
 		this.latitude = latitude;
