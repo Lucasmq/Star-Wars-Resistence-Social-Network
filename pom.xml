@@ -52,7 +52,7 @@
 		    <scope>runtime</scope>
 		    <version>1.4.199</version> 
 		</dependency>-->
-		<!--  POSTGRESQL Database -->
+		<!--  POSTGRESQL D -->
 		<dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
