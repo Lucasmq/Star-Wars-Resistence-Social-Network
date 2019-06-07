@@ -2,6 +2,7 @@ package com.rebeldes.resistencia.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class RebeldeService {
 	
 	public List<Rebelde> findAll(){
 		return rebeldeRepo.findAll();
+	}
+	
+	public List<Rebelde> findAllRebeldes(){         // não está incluido os traidores
+		return rebeldeRepo.rebeldesNaoTraidores();
 	}
 	
 	public Rebelde findById(Long id) {

@@ -39,8 +39,8 @@ public class RebeldeResource {
 	InventarioService inventarioService;
 	
 	@GetMapping("/rebeldes")
-	public List<Rebelde> listaRebeldes(){
-		return rebeldeService.findAll();
+	public List<Rebelde> listaRebeldes(){        // caso seja um traidor, não listar
+		return rebeldeService.findAllRebeldes();
 	}
 	
 	@GetMapping("/rebelde/{id}")
