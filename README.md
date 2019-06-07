@@ -37,12 +37,12 @@ API REST que armazena informações sobre rebeldes, bem como os recursos que ele
 
     Para que possa ocorrer a troca, os rebeldes devem respeitar a tabela de preços abaixo:
 
-        | Item      | Pontos   |
-        |-----------|----------|
-        | 1 Arma    | 4 pontos |
-        | 1 Munição | 3 pontos |
-        | 1 Água    | 2 pontos |
-        | 1 Comida  | 1 ponto  |
+| Item      | Pontos   |
+|-----------|----------|
+| 1 Arma    | 4 pontos |
+| 1 Munição | 3 pontos |
+| 1 Água    | 2 pontos |
+| 1 Comida  | 1 ponto  |
 
     Ambos os lados deverão oferecer a mesma quantidade de pontos. Por exemplo, 1 arma e 1 água (1 x 4 + 1 x 2) valem 6 comidas (6 x 1) ou 2 munições (2 x 3).
     A negociação em si não é armazenada, mas os itens são transferidos de um rebelde a outro.
@@ -61,7 +61,7 @@ API REST que armazena informações sobre rebeldes, bem como os recursos que ele
         * Pontos perdidos devido a traidores
             Retorna a quantidade de pontos que a resistencia perdeu devido a traição dos rebeldes.
 
-# Tecnologias utilizadas
+## Tecnologias utilizadas
 
     As tecnologias utilizadas foram Java, Spring boot, Spring Data, Hibernate (utilizando H2, pois é mais simples para a configuração e visualização rápida), Maven como gerenciador de dependência.
 
