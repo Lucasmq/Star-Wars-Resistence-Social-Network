@@ -6,7 +6,7 @@ API REST que armazena informações sobre rebeldes, bem como os recursos que ele
 
 ## Documentação dos endpoints
 
-* **Delploy**
+* **Deploy**
 
     O deploy dessa API foi feito no [Heroku](https://st-resistence-network-api.herokuapp.com). Para acessa-la basta seguir a documentação no postman.
 
