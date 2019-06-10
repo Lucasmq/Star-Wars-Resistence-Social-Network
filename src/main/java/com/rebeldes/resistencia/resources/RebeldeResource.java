@@ -53,7 +53,6 @@ public class RebeldeResource {
 	
 	@PostMapping("/rebelde")
 	public ResponseEntity<Rebelde> salvaRebelde(@RequestBody @Valid RebeldeDTO rebeldeDTO) {  // TODO arrumar o modo como salva os itens e localização
-		System.out.println("RESOURCE: "+rebeldeDTO.tranformaParaRebelde().getInventario());//.getGenero());
 		Rebelde reb = rebeldeService.salvarRebelde(rebeldeDTO.tranformaParaRebelde());
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(reb.getId()).toUri(); // retorna o caminho do novo rebelde
 		return ResponseEntity.created(uri).body(reb); 

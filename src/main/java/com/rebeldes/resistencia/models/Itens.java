@@ -15,7 +15,7 @@ public class Itens implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ID_ITEM")
+	@Column(name="ID")
 	private Long id;
 	
 	private String nomeItem;

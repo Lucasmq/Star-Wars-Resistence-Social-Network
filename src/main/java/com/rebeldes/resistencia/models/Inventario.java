@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -25,7 +26,8 @@ public class Inventario implements Serializable{
 	private Long id;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name="ID_ITEM")
+	//@JoinColumn(name="ID")
+    @JoinTable(name = "inventario_itens", joinColumns = {@JoinColumn(name = "inventario_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "item_id", referencedColumnName = "id")})
 	@NotEmpty(message= "O rebelde não pode iniciar sem itens!")
 	private List<Itens> itens;
 

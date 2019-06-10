@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rebeldes.resistencia.models.Rebelde;
+import com.rebeldes.resistencia.repository.InventarioRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
 import com.rebeldes.resistencia.services.exception.ObjectNotFoundException;
 
@@ -16,6 +17,9 @@ public class RebeldeService {
 	
 	@Autowired
 	private RebeldeRepository rebeldeRepo;
+	
+	@Autowired
+	private InventarioRepository inventarioRepo;
 	
 	@Autowired
 	private LocalizacaoService localService;
@@ -40,7 +44,7 @@ public class RebeldeService {
 	}
 	
 	public Rebelde salvarRebelde(Rebelde rb) {
-		//System.out.println(rb.getGenero());
+		//System.out.println();//inventarioRepo.numItens(2L));
 		localService.saveLocalizacao(rb.getLocalizacao()); // TODO validar os dados de localizacao
 		inventService.saveInventario(rb.getInventario());
 		return rebeldeRepo.save(rb);
