@@ -10,16 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Inventario")
+@SequenceGenerator(name = "GEN_SEQ_INVENTARIO", sequenceName = "SEQ_INVENTARIO")
 public class Inventario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "GEN_SEQ_INVENTARIO")
 	private Long id;
 	
 	@ManyToMany(fetch = FetchType.EAGER)

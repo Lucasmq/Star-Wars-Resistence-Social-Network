@@ -1,37 +1,53 @@
 package com.rebeldes.resistencia.models;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="REBELDE")
+@SequenceGenerator(name = "GEN_SEQ_REBELDE", sequenceName = "SEQ_REBELDE", allocationSize = 10)
 public class Rebelde  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "GEN_SEQ_REBELDE") // gera as sequencias para os ids do rebelde
 	private Long id;
 	
 	private String nome;
 	
 	private Integer idade;
 	
-	private String genero;			// aqui seria melhor utilizar ENUM
+	//private String genero;			// aqui seria melhor utilizar ENUM
+	public enum Genero {
+		 MASCULINO,
+		 FEMININO;
+	}
+	
+	@Enumerated(EnumType.STRING)
+    private Genero genero;
 	
 	private Integer votosTraidor;
 	
 	private boolean traidor;
 	
-	@OneToOne
+	@OneToOne//(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_localizacao")
 	private Localizacao localizacao;
 
-	@OneToOne
+	@OneToOne//(cascade = CascadeType.ALL) // ao ser apagado um rebelde, apaga seu inventario junto
+	@JoinColumn(name = "fk_inventario")	
 	private Inventario inventario;
 
 	public Rebelde() {
@@ -39,7 +55,7 @@ public class Rebelde  implements Serializable{
 		this.traidor = false;
 	}
 	
-	public Rebelde(String nome, Integer idade, String genero, Localizacao localizacao, Inventario inventario) {
+	public Rebelde(String nome, Integer idade, Genero genero, Localizacao localizacao, Inventario inventario) {
 		this.nome = nome;
 		this.idade = idade;
 		this.genero = genero;
@@ -48,7 +64,7 @@ public class Rebelde  implements Serializable{
 		this.inventario = inventario;
 	}
 	
-	public Rebelde(Long id, String nome, Integer idade, String genero, boolean traidor,
+	public Rebelde(Long id, String nome, Integer idade, Genero genero, boolean traidor,
 			Localizacao localizacao, Inventario inventario) {
 		this.id = id;
 		this.nome = nome;
@@ -103,11 +119,11 @@ public class Rebelde  implements Serializable{
 		this.idade = idade;
 	}
 
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
 
@@ -141,6 +157,15 @@ public class Rebelde  implements Serializable{
 
 	public void setInventario(Inventario inventario) {
 		this.inventario = inventario;
+	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Rebelde [id=" + id + ", nome=" + nome + ", idade=" + idade + ", genero=" + genero + ", votosTraidor="
+				+ votosTraidor + ", traidor=" + traidor + ", localizacao=" + localizacao + ", inventario=" + inventario
+				+ "]";
 	}
 
 	@Override

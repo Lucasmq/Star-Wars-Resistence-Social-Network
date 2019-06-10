@@ -1,5 +1,7 @@
 package com.rebeldes.resistencia.models.DTO;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,6 +9,7 @@ import javax.validation.constraints.Size;
 import com.rebeldes.resistencia.models.Inventario;
 import com.rebeldes.resistencia.models.Localizacao;
 import com.rebeldes.resistencia.models.Rebelde;
+import com.rebeldes.resistencia.models.Rebelde.Genero;
 
 public class RebeldeDTO {
 	
@@ -17,17 +20,21 @@ public class RebeldeDTO {
 	@NotNull(message= "Idade não pode ser vazia!")
 	private Integer  idade;
 	
-	@NotBlank(message = "Nome não pode ser vazio!")
-	private String genero;
-
+	//@NotBlank(message = "Nome não pode ser vazio!")
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private Genero genero;
+	
+	@NotNull
 	private Localizacao localizacao;
-
+	
+	@NotNull
 	private Inventario inventario;
 	
 	public RebeldeDTO() {
 	}
 
-	public RebeldeDTO(String nome, Integer idade, String genero, Localizacao localizacao, Inventario inventario) {
+	public RebeldeDTO(String nome, Integer idade, Genero genero, Localizacao localizacao, Inventario inventario) {
 		this.nome = nome;
 		this.idade = idade;
 		this.genero = genero;
@@ -55,11 +62,11 @@ public class RebeldeDTO {
 		this.idade = idade;
 	}
 
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
 

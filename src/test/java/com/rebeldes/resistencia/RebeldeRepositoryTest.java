@@ -18,6 +18,8 @@ import com.rebeldes.resistencia.models.Localizacao;
 import com.rebeldes.resistencia.models.Rebelde;
 import com.rebeldes.resistencia.repository.ItensRepository;
 import com.rebeldes.resistencia.repository.RebeldeRepository;
+import com.rebeldes.resistencia.models.Rebelde.Genero;
+
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -46,10 +48,10 @@ public class RebeldeRepositoryTest {
 		
 		Localizacao local = new Localizacao(888,777,"Patos");
 		
-		Rebelde rebelde = new Rebelde("Lucas Queiroz", 24, "MASCULINO", local, inventario );
+		Rebelde rebelde = new Rebelde("Lucas Queiroz", 24, Genero.MASCULINO, local, inventario );
 		this.rebeldeRepository.save(rebelde);
 		Assertions.assertThat(rebelde.getId()).isNotNull();
-		Assertions.assertThat(rebelde.getGenero()).isEqualTo("MASCULINO");
+		Assertions.assertThat(rebelde.getGenero()).isEqualTo(Genero.MASCULINO);
 		Assertions.assertThat(rebelde.getInventario()).isEqualTo(inventario);  // testa se é o mesmo inventario
 		Assertions.assertThat(rebelde.getLocalizacao()).isEqualTo(local);      // testa se é o mesmo local inserido
 	}

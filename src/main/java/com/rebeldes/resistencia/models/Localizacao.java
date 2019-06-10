@@ -6,17 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="LOCALIZACAO")
+@SequenceGenerator(name = "GEN_SEQ_LOCALIZACAO", sequenceName = "SEQ_LOCALIZACAO") // allocationSize = 1 ?
 public class Localizacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "GEN_SEQ_LOCALIZACAO") 
 	private Long id; // usar esse id compartilhado com o id de rebelde
 	
 	@NotNull(message= "Latitude tem que ser informada!")

@@ -40,6 +40,7 @@ public class RebeldeService {
 	}
 	
 	public Rebelde salvarRebelde(Rebelde rb) {
+		//System.out.println(rb.getGenero());
 		localService.saveLocalizacao(rb.getLocalizacao()); // TODO validar os dados de localizacao
 		inventService.saveInventario(rb.getInventario());
 		return rebeldeRepo.save(rb);
