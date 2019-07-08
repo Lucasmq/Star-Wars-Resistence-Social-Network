@@ -10,9 +10,9 @@ import com.rebeldes.resistencia.models.Rebelde;
 public interface RebeldeRepository extends JpaRepository<Rebelde, Long>{
 
 	 // persistencia no banco de dados (findById ....)
-	@Query("SELECT reb FROM Rebelde reb WHERE reb.traidor = 1")
+	@Query("SELECT reb FROM Rebelde reb WHERE reb.traidor = 'true'")
 	List<Rebelde> traidores();
 	
-	@Query("SELECT reb FROM Rebelde reb WHERE reb.traidor = 0")
+	@Query("SELECT reb FROM Rebelde reb WHERE reb.traidor = 'false'")
 	List<Rebelde> rebeldesNaoTraidores();
 }
